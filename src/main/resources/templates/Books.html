@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+
+       <div class = "col-8 align-self-center"> <h1>List Books</h1> </div>
+        <div class = "col-4 align-self-center" > <a th:href="@{/addBook}" class="btn btn-success">Add Book</a> </div>
+
+    </div>
+
+    <table class="table table-striped table-bordered">
+
+
+
+        <tr class="table-dark">
+
+            <th scope="col">BookCode</th>
+
+            <th scope="col">Title</th>
+
+            <th scope="col">Author</th>
+
+            <th scope="col">Category</th>
+
+            <th scope="col">Approved</th>
+
+            <th scope="col">Action</th>
+        </tr>
+
+        <tr th:each="book : ${books}">
+            <td><span th:text="${book.bookCode}">BookCode 1</span></td>
+            <td> <span th:text="${book.title}">Title 1</span> </td>
+            <td><span th:text="${book.author}"> Author 1</span></td>
+            <td><span th:text="${book.category}"> Category 1</span></td>
+            <td>
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" th:checked="*{book.approved}" disabled>
+            </td>
+            <td>
+                <a th:href="@{/book/{id}(id=${book.bookCode})}" class="btn btn-success">View</a>
+                <a th:href="@{/delete/{id}(id=${book.bookCode})}"  class="btn btn-danger">Delete</a>
+            </td>
+
+        </tr>
+
+
+
+
+    </table>
+</div>
+</body>
+</html>
